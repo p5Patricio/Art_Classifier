@@ -9,7 +9,6 @@ def procesar_imagen(file_path):
     try:
         img = cv2.imread(file_path)
         if img is None:
-            print(f"No se pudo leer la imagen: {file_path}")
             return None
         img = cv2.resize(img, (128, 128))
         
@@ -18,7 +17,6 @@ def procesar_imagen(file_path):
         
         return color_hist
     except Exception as e:
-        print(f"Error procesando {file_path}: {e}")
         return None
 
 # Función para paralelizar el procesamiento de imágenes
