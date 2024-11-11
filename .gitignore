@@ -1,0 +1,8 @@
+venv/
+art_features.xlsx
+label_encoder.pkl
+scaler.pkl
+modelo_clasificador_arte.h5
+archive.zip
+dataset/ 
+training_set/
