@@ -33,6 +33,8 @@ if __name__ == "__main__":
     features = []
 
     # Recorremos las carpetas de clases
+    print('We are exploring each folder and image...')
+    print('We are extracting the color histogram of each image...')
     for label in os.listdir(image_dir):
         class_dir = os.path.join(image_dir, label)
         if not os.path.isdir(class_dir):
@@ -45,6 +47,7 @@ if __name__ == "__main__":
         etiquetas.extend([label] * len(class_features))
 
     # Guardamos en Excel
+    print('We are saving the features of each color histogram in Excel...')
     df = pd.DataFrame(features)
     df['label'] = etiquetas
     df.to_excel('art_features.xlsx', index=False)

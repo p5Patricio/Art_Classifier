@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model # type: ignore
 import pickle
 # Usa rutas absolutas en lugar de relativas
 import os
@@ -26,12 +26,6 @@ def extraer_caracteristicas_imagen(file_path):
 # Función para clasificar una imagen individual
 def clasificar_imagen(file_path):
     # Extraer características
-    # Obtén la ruta absoluta
-    absolute_path = os.path.abspath("dataset/dataset_updated/validation_set/iconography/600.jpg")
-
-    # Verifica si el archivo existe
-    if not os.path.exists(absolute_path):
-        print(f"El archivo no existe en la ruta: {absolute_path}")
     features = extraer_caracteristicas_imagen(file_path)
     
     # Escalar características
@@ -45,4 +39,5 @@ def clasificar_imagen(file_path):
     print(f"La imagen {file_path} fue clasificada como: {predicted_label[0]}")
 
 # Clasificar una imagen de prueba
-clasificar_imagen(r"dataset\dataset_updated\training_set\iconography\prueba.jpg")
+#clasificar_imagen(r"dataset\dataset_updated\training_set\painting\0004.jpg")
+clasificar_imagen(r"C:\Users\patri\Downloads\1.jpg")

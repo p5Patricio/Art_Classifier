@@ -8,14 +8,12 @@ from tensorflow.keras.layers import Dense # type: ignore
 from tensorflow.keras.utils import to_categorical # type: ignore
 import matplotlib.pyplot as plt
 
-# Cargar datos
+# Extraer los datos del archivo excel de caracteristicas
 data = pd.read_excel('art_features.xlsx')
 X = data.drop(columns=['label']).values
 y = data['label'].values
-print (X)
-print (y)
 
-# Codificar las etiquetas (convertirlas a números)
+# convertir a números las etiquetas
 label_encoder = LabelEncoder()
 y_encoded = label_encoder.fit_transform(y)
 y_categorical = to_categorical(y_encoded)
@@ -29,8 +27,8 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 model = Sequential([
-    Dense(500, input_shape=(X_train.shape[1],), activation='sigmoid'),
-    Dense(250, activation='sigmoid'),
+    Dense(200, input_shape=(X_train.shape[1],), activation='sigmoid'),
+    Dense(100, activation='sigmoid'),
     Dense(y_categorical.shape[1], activation='sigmoid')
 ])
 
@@ -53,7 +51,7 @@ with open("scaler.pkl", "wb") as scaler_file:
 
 # Evaluar el modelo en el conjunto de prueba
 test_loss, test_accuracy = model.evaluate(X_test, y_test)
-print(f"Accuracy en el conjunto de prueba: {test_accuracy}")
+print(f"Precisión en el conjunto de prueba: {100 * test_accuracy:.2f}%")
 
 # Obtener predicciones y mostrar la matriz de confusión
 y_pred = model.predict(X_test)
@@ -65,4 +63,5 @@ cm = confusion_matrix(y_true, y_pred_classes)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=label_encoder.classes_)
 disp.plot(cmap=plt.cm.Blues)
 plt.show()
+
 
